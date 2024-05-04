@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5, // Ajustar la opacidad de la sombra según sea necesario
         shadowRadius: 5, // Ajustar el radio de la sombra según sea necesario
         elevation: 5, // Ajustar la elevación de la sombra para Android
-        alignItems: 'center', // Centrar elementos dentro del contenedor
+          alignItems: 'center', // Centrar elementos dentro del contenedor
     },
     productImage: {
         width: 100, // Ajustar el tamaño de la imagen según sea necesario
