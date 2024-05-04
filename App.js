@@ -14,7 +14,7 @@ import Detail from './screens/Detail';
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
+      <Stack.Navigator initialRouteName='Products'>
         <Stack.Screen
           name="Home"
           component={Home}
