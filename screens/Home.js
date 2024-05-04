@@ -1,35 +1,25 @@
-import { StyleSheet, Pressable, FlatList, ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Pressable, FlatList, ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
 import React, { useState, useEffect } from 'react';
+import UserInfo from './UserInfo';
+import NavBar from './NavBar';
+import Products from './Products';
 
-export default function Home({ route, navigation }) {
+
+export default function Home({ route, navigation, id = 2 }) {
+
+    const productURL = "https://api.escuelajs.co/api/v1/products";
     return (
-        <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                <Text style={styles.button}>Inicio</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Products')}>
-                <Text style={styles.button}>Productos</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
-                <Text style={styles.button}>Categorias</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Detail')}>
-                <Text style={styles.button}>Detalle</Text>
-            </TouchableOpacity>
+        <View>
+            <NavBar navigation={navigation} />
+            <UserInfo id={id} />
+            <Products route={route} navigation={navigation} url={productURL} ></Products>
         </View>);
 }
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        backgroundColor: '#f4511e',
-        height: 60,
-        paddingTop: 20,
-    },
-    button: {
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: 18,
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
     },
 });
