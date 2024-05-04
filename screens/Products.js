@@ -1,7 +1,7 @@
-import { StyleSheet, Pressable, FlatList, ScrollView,View,Text, ActivityIndicator, Image } from 'react-native';
-import React,{useState, useEffect} from 'react';
+import { StyleSheet, Pressable, FlatList, View, Text, Image, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect } from 'react';
 
-export default function Products({route, navigation}){
+export default function Products({ route, navigation }) {
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
 
@@ -17,7 +17,14 @@ export default function Products({route, navigation}){
                 if (data.length === 0) {
                     throw new Error('La respuesta de la API está vacía');
                 }
-                setProducts(data);
+                // Convertir las cadenas JSON de imágenes en arrays válidos de URLs de imagen
+                const productsWithImages = data.map(product => {
+                    return {
+                        ...product,
+                        images: JSON.parse(product.images)
+                    };
+                });
+                setProducts(productsWithImages);
                 setLoading(false);
             })
             .catch(error => {
@@ -25,15 +32,26 @@ export default function Products({route, navigation}){
                 setLoading(false);
             });
     }, []);
+
+    const handleProductPress = (product) => {
+        navigation.navigate('Detail', { product: product });
+    };
+
     const renderItem = ({ item }) => (
-        <View style={styles.itemContainer}>
-            <View style={styles.item}>
-            <Image source={{ uri: `https:${item.images[0]}` }} style={styles.productImage} resizeMode="contain" />
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.price}>${parseInt(item.price).toFixed(2)}</Text>
-                <Text style={styles.subtitle}>Descripción: {item.description}</Text>
+        <Pressable onPress={() => handleProductPress(item)}>
+            <View style={styles.itemContainer}>
+                <View style={styles.item}>
+                    <Pressable onPress={() => handleProductPress(item)}>
+                        <Image source={{ uri: item.images[0] }} style={styles.productImage} />
+                    </Pressable>
+                    <Text style={styles.title}>{item.title}</Text>
+                    <Pressable onPress={() => handleProductPress(item)}>
+                        <Text style={styles.price}>${parseFloat(item.price).toFixed(2)}</Text>
+                    </Pressable>
+                    <Text style={styles.subtitle}>Descripción: {item.description}</Text>
+                </View>
             </View>
-        </View>
+        </Pressable>
     );
 
     if (loading) {
@@ -62,31 +80,37 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: 'black', // Cambiar el color de fondo a negro
     },
     titleText: {
         fontSize: 40,
         fontStyle: 'italic', // Establecer como cursiva
         fontWeight: 'bold',
-      //  marginBottom: 30,
-        color: 'black', // Establecer color a negro
+        color: 'white', // Establecer color a negro
         textShadowColor: 'green', // Establecer color de la sombra del texto a verde
-        textShadowOffset: { width: 1, height: 1 }, // Establecer desplazamiento de la sombra
-        textShadowRadius: 1, // Establecer radio de la sombra
+        textShadowOffset: { width: 3, height: 3 }, // Establecer desplazamiento de la sombra
+        textShadowRadius: 3, // Establecer radio de la sombra
     },
     itemContainer: {
         marginBottom: 10,
     },
     item: {
-        backgroundColor: '#f9c2ff',
+        backgroundColor: '#fff', // Cambiar a color blanco
         padding: 20,
         marginHorizontal: 16,
-        borderRadius: 10,
+        borderRadius: 0, // Cambiar a 0 para un recuadro recto
+        shadowColor: '#f9c2ff', // Cambiar a sombra verde oscuro
+        shadowOffset: { width: 5, height: 5 }, // Ajustar el desplazamiento de la sombra según sea necesario
+        shadowOpacity: 0.5, // Ajustar la opacidad de la sombra según sea necesario
+        shadowRadius: 5, // Ajustar el radio de la sombra según sea necesario
+        elevation: 5, // Ajustar la elevación de la sombra para Android
+        alignItems: 'center', // Centrar elementos dentro del contenedor
     },
     productImage: {
         width: 100, // Ajustar el tamaño de la imagen según sea necesario
         height: 100,
         marginBottom: 10,
+       
     },
     title: {
         fontSize: 25,
@@ -99,9 +123,8 @@ const styles = StyleSheet.create({
         textAlign: 'center', 
     },
     price:{
-        frontSize: 20,
+        fontSize: 20,
         textAlign: 'center',
         fontWeight: 'bold',
-        
     },
 });
