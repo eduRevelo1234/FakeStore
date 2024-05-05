@@ -1,35 +1,31 @@
-import { StyleSheet, Pressable, FlatList, ScrollView, View, Text, TouchableOpacity } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { StyleSheet, View, Text, Image } from 'react-native';
+
 
 export default function Home({ route, navigation }) {
+    
+    
     return (
-        <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                <Text style={styles.button}>Inicio</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Products')}>
-                <Text style={styles.button}>Productos</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
-                <Text style={styles.button}>Categorias</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Detail')}>
-                <Text style={styles.button}>Detalle</Text>
-            </TouchableOpacity>
-        </View>);
+        
+
+    );
 }
+
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        backgroundColor: '#f4511e',
-        height: 60,
-        paddingTop: 20,
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center',
+        paddingTop: 50,
+        backgroundColor: '#1976D2',
     },
-    button: {
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: 18,
+    tinyLogo: {
+      width: 150,
+      height: 150,
+    },
+    name: {
+        marginBottom: 4,
+        fontSize: 20,
+        fontWeight: '500',
     },
 });
