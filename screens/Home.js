@@ -12,7 +12,16 @@ export default function Home({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-            
+            <Image
+                style={styles.tinyLogo}
+                source={{uri: profileData.avatar,}}
+            />
+            <View>
+                <Text style={styles.name}>{profileData.name}</Text>
+            </View>
+            <View>
+                <Text style={styles.name}>{profileData.role}</Text>
+            </View>
         </View>
 
     );
