@@ -24,7 +24,40 @@ export default function Login({ route, navigation }) {
     }
 
     const handleLogin = async () => {
-        
+        // Comprobamos si usuarios es valido
+        const loginResponse = await fetch('https://api.escuelajs.co/api/v1/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email,
+                password,
+            }),
+        });
+
+        if (loginResponse.ok) {
+            const loginData = await loginResponse.json();
+            const accessToken = loginData.access_token;
+
+            // Utilizamos el accessToke para obtener los datos del usuario
+            const profileResponse = await fetch('https://api.escuelajs.co/api/v1/auth/profile', {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            });
+
+            if (profileResponse.ok) {
+                
+
+                // Enviamos datos del usuario
+                navigation.navigate('Splash', { profileData });
+            } else {
+                console.log('Error al obtener datos del usuario');
+            }
+        } else {
+            console.log('Error al obtener datos del usuario');
+        }
     }
     
     return (
