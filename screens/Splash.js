@@ -6,7 +6,9 @@ export default function Splash({ route, navigation }) {
     
     const {profileData} = route.params
 
-   
+    useEffect(() => {
+        setTimeout(() => navigation.navigate('Home', { profileData }), 5500);
+      }, []);
 
     return (
         <View style={styles.container} >
