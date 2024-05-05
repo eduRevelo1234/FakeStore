@@ -4,9 +4,15 @@ import { MyColors } from '../src/theme/AppTheme';
 
 export default function Splash({ route, navigation }) {
     
+    const {profileData} = route.params
+
+   
 
     return (
         <View style={styles.container} >
+            <View style={styles.logo}>
+                <Image source={require('../assets/logo.png')} />
+            </View>
         </View>);
 }
 const styles = StyleSheet.create({
