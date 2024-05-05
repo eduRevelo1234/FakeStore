@@ -11,77 +11,54 @@ export default function ProductItem({ product }) {
             <View>
                 <Text style={styles.name}>{product.title}</Text>
                 <View style={[styles.rowContainer, styles.priceContainer]}>
-                    <Text style={styles.originalPrice}>
+                    <Text style={styles.price}>
                         ${product.price}
                     </Text>
                 </View>
             </View>
-
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        margin: 8,
         flexDirection: 'row',
-    },
-    rowContainer: {
-        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#FFFFFF',
+        borderRadius: 10,
+        padding: 10,
+        marginBottom: 10,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        marginHorizontal: 10, // Sin margen horizontal
     },
     image: {
-        width: 90,
-        height: 150,
-        resizeMode: 'contain',
-
-        marginRight: 12,
+        width: 80,
+        height: 80,
+        marginRight: 10,
+        borderRadius: 10,
+    },
+    infoContainer: {
+        flex: 1,
+        justifyContent: 'center',
     },
     name: {
-        marginBottom: 4,
-
-        fontSize: 15,
-        fontWeight: '500',
-    },
-    ratingContainer: {
-        marginBottom: 8,
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 5,
     },
     priceContainer: {
-        marginBottom: 12,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
-    rating: {
-        borderRadius: 4,
-        paddingHorizontal: 8,
-        justifyContent: 'center',
-        backgroundColor: '#008c00',
-
-        marginRight: 4,
-    },
-    ratingText: {
-        color: '#fff',
-        fontSize: 12,
-        fontWeight: '600',
-    },
-    ratingCount: {
-        color: '#878787',
-    },
-    originalPrice: {
-        fontSize: 18,
-        marginRight: 4,
-        fontWeight: '600',
-
-        color: 'rgba(0, 0, 0, 0.5)',
-        textDecorationLine: 'line-through',
-    },
-    discountPrice: {
-        fontSize: 18,
-        marginRight: 4,
-        fontWeight: '600',
-
-        color: '#000000',
-    },
-    offerPercentage: {
-        fontSize: 17,
-        fontWeight: '600',
-        color: '#4bb550',
+    price: {
+        fontSize: 14,
+        color: '#333333',
     },
 });

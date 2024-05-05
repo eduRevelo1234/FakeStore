@@ -22,6 +22,7 @@ export default function UserInfo({ route, navigation, id }) {
                 style={styles.userImage}
             />
             <Text style={styles.text} > Bienvenido a la tienda {userInfo.name}</Text>
+            <Text style={styles.text} > Tenemos estas ofertas para ti </Text>
         </View>
     )
 }
@@ -33,7 +34,6 @@ const styles = StyleSheet.create({
         alignItems: 'center', // Centra horizontalmente
     },
     text: {
-        fontFamily: 'Billabong', // Fuente personalizada o similar
         fontSize: 18, // Tamaño del texto
         fontWeight: 'bold', // Peso del texto
         lineHeight: 24, // Altura de línea

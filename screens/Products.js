@@ -7,12 +7,12 @@ export default function Products({ route, navigation, url }) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch(url + id)
+        fetch(url)
             .then((resp) => resp.json())
             .then((json) => setProducts(json))
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
-        console.log(userInfo)
+        console.log(products)
     }, []);
     return (
         <FlatList

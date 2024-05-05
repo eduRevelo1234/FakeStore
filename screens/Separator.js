@@ -10,7 +10,7 @@ export default function Separator() {
 
 const styles = StyleSheet.create({
     seprator: {
-        height: 0.8,
+        height: 0,
         backgroundColor: '#CAD5E2'
     }
 })
