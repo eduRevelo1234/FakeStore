@@ -17,9 +17,6 @@ export default function NavBar({ route, navigation}) {
                 <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
                     <Text style={styles.button}>Categorias</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Detail')}>
-                    <Text style={styles.button}>Detalle</Text>
-                </TouchableOpacity>
             </View>
         </View>);
 }
@@ -27,6 +24,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginTop: 40,
         paddingHorizontal: 20,
         paddingVertical: 10,
       },
