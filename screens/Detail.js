@@ -6,23 +6,18 @@ const windowWidth = Dimensions.get('window').width;
 export default function Detail({ route }) {
     const { product } = route.params;
 
-    // Mapea las URLs de las imágenes del producto y las convierte en objetos con la propiedad 'uri'
-    const imagesString = product.images[0]; // Obtiene la cadena de imágenes
-    const trimmedImagesString = imagesString.replace(/[\[\]"\\]/g, ''); // Elimina corchetes, comillas y barras invertidas
-    const images = trimmedImagesString.split(',').map(url => ({ uri: url })); // Divide la cadena en un array de objetos con la propiedad 'uri'
-
     const renderMainImage = () => (
         <View style={styles.mainImageContainer}>
             <View style={styles.imageBox}>
-                <Image source={images[0]} style={styles.mainImage} />
+                <Image source={{ uri: product.images[0] }} style={styles.mainImage} />
             </View>
         </View>
     );
 
     const renderRemainingImages = () => (
         <View style={styles.imageContainer}>
-            {images.slice(1).map((image, index) => (
-                <Image key={index} source={image} style={styles.image} />
+            {product.images.slice(1).map((imageUrl, index) => (
+                <Image key={index} source={{ uri: imageUrl }} style={styles.image} />
             ))}
         </View>
     );
@@ -98,6 +93,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 200,
         marginBottom: 10,
+        resizeMode: 'cover', // Ajusta la imagen al tamaño del contenedor cubriendo la mayor área posible
     },
     categoryContainer: {
         marginTop: 20,
@@ -124,6 +120,6 @@ const styles = StyleSheet.create({
     categoryImage: {
         width: 100,
         height: 100,
-        resizeMode: 'cover',
+        resizeMode: 'cover', // Ajusta la imagen al tamaño del contenedor cubriendo la mayor área posible
     },
 });

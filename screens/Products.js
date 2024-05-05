@@ -17,14 +17,7 @@ export default function Products({ route, navigation }) {
                 if (data.length === 0) {
                     throw new Error('La respuesta de la API está vacía');
                 }
-                // Convertir las cadenas JSON de imágenes en arrays válidos de URLs de imagen
-                const productsWithImages = data.map(product => {
-                    return {
-                        ...product,
-                        images: JSON.parse(product.images)
-                    };
-                });
-                setProducts(productsWithImages);
+                setProducts(data); // Utiliza los datos directamente sin modificar las imágenes
                 setLoading(false);
             })
             .catch(error => {
@@ -32,7 +25,6 @@ export default function Products({ route, navigation }) {
                 setLoading(false);
             });
     }, []);
-
     const handleProductPress = (product) => {
         navigation.navigate('Detail', { product: product });
     };
