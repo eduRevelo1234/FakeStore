@@ -48,7 +48,9 @@ export default function Login({ route, navigation }) {
             });
 
             if (profileResponse.ok) {
-                
+                const profileData = await profileResponse.json();
+                const userData = profileData.data;
+                console.log(profileData.name, profileData.id, profileData.role, profileData.avatar);
 
                 // Enviamos datos del usuario
                 navigation.navigate('Splash', { profileData });
