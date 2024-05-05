@@ -2,11 +2,18 @@ import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 
 
+import React from 'react';
+import { StyleSheet, View, Text, Image } from 'react-native';
+
+
 export default function Home({ route, navigation }) {
     
-    
+    const {profileData} = route.params
+
     return (
-        
+        <View style={styles.container}>
+            
+        </View>
 
     );
 }
@@ -29,3 +36,4 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
 });
+
