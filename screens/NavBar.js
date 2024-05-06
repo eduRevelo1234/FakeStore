@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import UserInfo from './UserInfo';
 
 
-export default function NavBar({ route, navigation}) {
+export default function NavBar({ route, navigation }) {
 
     return (
         <View>
@@ -11,7 +11,7 @@ export default function NavBar({ route, navigation}) {
                 <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                     <Text style={styles.button}>Inicio</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Products')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Products', { url: 'https://api.escuelajs.co/api/v1/products' })}>
                     <Text style={styles.button}>Productos</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
@@ -27,16 +27,16 @@ const styles = StyleSheet.create({
         marginTop: 40,
         paddingHorizontal: 20,
         paddingVertical: 10,
-      },
-      button: {
+    },
+    button: {
         backgroundColor: '#E5E5E5', // Color de fondo
         borderRadius: 20,
         paddingVertical: 10,
         paddingHorizontal: 20,
-      },
-      buttonText: {
+    },
+    buttonText: {
         color: '#000', // Color del texto
         fontSize: 16,
         fontWeight: 'bold',
-      },
+    },
 });
