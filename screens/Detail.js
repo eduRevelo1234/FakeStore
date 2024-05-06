@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, Dimensions } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -15,11 +16,17 @@ export default function Detail({ route }) {
     );
 
     const renderRemainingImages = () => (
-        <View style={styles.imageContainer}>
-            {product.images.slice(1).map((imageUrl, index) => (
-                <Image key={index} source={{ uri: imageUrl }} style={styles.image} />
-            ))}
-        </View>
+        <Carousel
+            data={product.images.slice(1)}
+            renderItem={({ item }) => (
+                <Image source={{ uri: item }} style={styles.image} />
+            )}
+            sliderWidth={windowWidth}
+            itemWidth={windowWidth}
+            loop
+            autoplay
+            autoplayInterval={5000}
+        />
     );
 
     return (
@@ -74,23 +81,10 @@ const styles = StyleSheet.create({
     mainImageContainer: {
         alignItems: 'center',
     },
-    imageBox: {
-        borderWidth: 1,
-        borderColor: 'white',
-        borderRadius: 10,
-        overflow: 'hidden',
-    },
-    mainImage: {
-        width: '100%',
-        height: 200,
-        marginBottom: 10,
-    },
-    imageContainer: {
-        alignItems: 'center',
-        marginTop: 10,
-    },
+ 
+   
     image: {
-        width: '100%',
+        width: windowWidth,
         height: 200,
         marginBottom: 10,
         resizeMode: 'cover', // Ajusta la imagen al tamaño del contenedor cubriendo la mayor área posible
@@ -121,5 +115,5 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         resizeMode: 'cover', // Ajusta la imagen al tamaño del contenedor cubriendo la mayor área posible
-    },
+    }
 });
