@@ -5,7 +5,7 @@ export default function Products({ route, navigation, url }) {
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('https://api.escuelajs.co/api/v1/products/?price_min=10&price_max=15')
+        fetch('https://api.escuelajs.co/api/v1/products')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Error al obtener los productos: ' + response.statusText);

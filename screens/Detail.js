@@ -7,14 +7,6 @@ const windowWidth = Dimensions.get('window').width;
 export default function Detail({ route }) {
     const { product } = route.params;
 
-    const renderMainImage = () => (
-        <View style={styles.mainImageContainer}>
-            <View style={styles.imageBox}>
-                <Image source={{ uri: product.images[0] }} style={styles.mainImage} />
-            </View>
-        </View>
-    );
-
     const renderRemainingImages = () => (
         <Carousel
             data={product.images.slice(1)}
@@ -33,8 +25,9 @@ export default function Detail({ route }) {
         <View style={styles.container}>
             <Text style={styles.title}>Detalles del Producto</Text>
             <Text style={styles.productTitle}>{product.title}</Text>
-            {renderMainImage()}
-            {renderRemainingImages()}
+            <View style={styles.imageContainer}>
+                {renderRemainingImages()}
+            </View>
             <Text style={[styles.boldText, styles.whiteText]}>Precio:</Text>
             <Text style={styles.whiteText}>${product.price.toFixed(2)}</Text>
             <Text style={[styles.boldText, styles.whiteText]}>Descripción:</Text>
@@ -55,6 +48,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
+        paddingTop: 50, // Espacio en la parte superior de la ventana
         backgroundColor: '#112114',
     },
     title: {
@@ -78,16 +72,14 @@ const styles = StyleSheet.create({
     whiteText: {
         color: 'white',
     },
-    mainImageContainer: {
-        alignItems: 'center',
+    imageContainer: {
+        marginBottom: 10, // Ajusta el espacio entre las imágenes y el texto
     },
- 
-   
     image: {
         width: windowWidth,
         height: 200,
+        resizeMode: 'cover',
         marginBottom: 10,
-        resizeMode: 'cover', // Ajusta la imagen al tamaño del contenedor cubriendo la mayor área posible
     },
     categoryContainer: {
         marginTop: 20,
