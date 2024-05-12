@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'black', // Cambiar el color de fondo a negro
+        backgroundColor: 'black',
+        marginTop: 40
     },
     titleText: {
         fontSize: 40,
@@ -95,25 +96,25 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5, // Ajustar la opacidad de la sombra según sea necesario
         shadowRadius: 5, // Ajustar el radio de la sombra según sea necesario
         elevation: 5, // Ajustar la elevación de la sombra para Android
-          alignItems: 'center', // Centrar elementos dentro del contenedor
+        alignItems: 'center', // Centrar elementos dentro del contenedor
     },
     productImage: {
         width: 100, // Ajustar el tamaño de la imagen según sea necesario
         height: 100,
         marginBottom: 10,
-       
+
     },
     title: {
         fontSize: 25,
         fontWeight: 'bold',
-        textAlign: 'center', 
+        textAlign: 'center',
     },
     subtitle: {
         fontSize: 15,
         color: 'gray',
-        textAlign: 'center', 
+        textAlign: 'center',
     },
-    price:{
+    price: {
         fontSize: 20,
         textAlign: 'center',
         fontWeight: 'bold',

@@ -9,7 +9,7 @@ export default function Home({ route, navigation }) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('https://api.escuelajs.co/api/v1/products/?price_min=10&price_max=15')
+        fetch('https://api.escuelajs.co/api/v1/products/?price_min=25&price_max=50')
             .then(response => response.json())
             .then(data => {
                 setProducts(data);
